@@ -1,0 +1,23 @@
+package web.pages;
+
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.gui.AbstractPage;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
+
+public class BookingInvoicePage extends AbstractPage {
+
+    @FindBy(xpath = "//span[@class=\"text-right\"]")
+    private ExtendedWebElement reservationNumberTitle;
+
+//    @FindBy(xpath = "")
+//    private ExtendedWebElement
+
+    public BookingInvoicePage(WebDriver driver) {
+        super(driver);
+    }
+
+    public boolean isOpened(){
+        return reservationNumberTitle.isElementPresent();
+    }
+}

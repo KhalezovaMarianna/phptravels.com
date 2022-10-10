@@ -1,16 +1,40 @@
-package testsPhptravels.headerTests;
+package testsPhptravels.componentsTests;
 
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import web.components.Footer;
 import web.components.Header;
 import web.pages.HomePage;
-import web.utils.enums.CurrencyEnum;
 import web.utils.enums.LanguagesEnum;
 
-public class HeaderTests extends AbstractTest {
+public class ComponentsTests extends AbstractTest {
+
+    @Test
+    @MethodOwner(owner = "marianna_khalezova")
+    @TestLabel(name = "feature", value = {"web", "acceptance"})
+    public void testCheckHeaderIsPresent() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        Header header = homePage.getHeader();
+        header.openBurgerMenu();
+        Assert.assertTrue(header.checkTitleIsPresent(),"Title isn't present");
+    }
+
+    @Test
+    @MethodOwner(owner = "marianna_khalezova")
+    @TestLabel(name = "feature", value = {"web", "acceptance"})
+    public void testCheckFooterIsPresent() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        Footer footer = homePage.getFooter();
+        Assert.assertTrue(footer.checkCommunityFormIsPresent(),"Community form isn't present");
+        Assert.assertTrue(footer.checkLogoIsPresent(),"logo isn't present");
+        Assert.assertTrue(footer.checkMessengerLabelsArePresent(),"Messengers labels aren't present");
+        Assert.assertTrue(footer.checkServicesButtonsArePresent(),"Services buttons aren't present");
+    }
 
     @Test
     @MethodOwner(owner = "marianna_khalezova")
@@ -21,9 +45,9 @@ public class HeaderTests extends AbstractTest {
         Header header = homePage.getHeader();
         header.openBurgerMenu();
         header.selectLanguage(LanguagesEnum.ENGLISH);
-        Assert.assertEquals(header.checkChosenLanguage(),LanguagesEnum.ENGLISH.getLanguage().toUpperCase(),"Chosen language isn't correct");
+        Assert.assertEquals(header.getChosenLanguage(),LanguagesEnum.ENGLISH.getLanguage().toUpperCase(),"Chosen language isn't correct");
         header.selectLanguage(LanguagesEnum.TURKISH);
-        Assert.assertEquals(header.checkChosenLanguage(),LanguagesEnum.TURKISH.getLanguage().toUpperCase(),"Chosen language isn't correct");
+        Assert.assertEquals(header.getChosenLanguage(),LanguagesEnum.TURKISH.getLanguage().toUpperCase(),"Chosen language isn't correct");
 //        header.choiceLanguage(LanguagesEnum.RUSSIAN);
 //        Assert.assertEquals(header.checkChosenLanguage(),LanguagesEnum.RUSSIAN.getLanguage().toUpperCase(),"Chosen language isn't correct");
 //        header.choiceLanguage(LanguagesEnum.PHILIPPINE);
@@ -53,10 +77,7 @@ public class HeaderTests extends AbstractTest {
         homePage.open();
         Header header = homePage.getHeader();
         header.openBurgerMenu();
-//        Currency currency=header.clickCurrency();
-//        homePage=currency.choiceCurrency(CurrencyEnum.CNY);
-//        header.choiceCurrency(CurrencyEnum.CNY);
-        Assert.assertEquals(header.checkChosenCurrency(), CurrencyEnum.CNY,"currency isn't correct");
+
 
     }
 

@@ -7,14 +7,17 @@ import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import web.pages.HomePage;
 import web.pages.LoginPage;
-import web.utils.enums.CurrencyEnum;
+import web.pages.ProfilePage;
 import web.utils.enums.LanguagesEnum;
 
 import java.util.List;
 
 public class Header extends AbstractUIObject implements ICustomTypePageFactory, IMobileUtils {
 
+    @FindBy(xpath = "//div[@class=\"logo\"]")
+    private ExtendedWebElement title;
 
     @FindBy(xpath = "//a[@title='hotels']")
     private ExtendedWebElement hotels;
@@ -40,17 +43,12 @@ public class Header extends AbstractUIObject implements ICustomTypePageFactory, 
     @FindBy(xpath = "//button[@id='languages']")
     private ExtendedWebElement languages;
 
-    @FindBy(xpath = "//ul[@class=\"dropdown-menu show\"]/li/a")
-    private List<ExtendedWebElement> language;
 
-    @FindBy(xpath = "//ul[@class=\"dropdown-menu show\"]")
-    private List<ExtendedWebElement> listLanguages;
+    @FindBy(xpath = ".//ul[@class=\"dropdown-menu show\"]/li/a")
+    private List<LanguageContainer> listLanguages;
 
     @FindBy(xpath = "//button[@id='currency']")
     private ExtendedWebElement currency;
-
-    @FindBy(xpath = "//ul[@class='dropdown-menu show']/li/a")
-    private List<ExtendedWebElement> listCurrency;
 
     @FindBy(xpath = "//i[@class='la la-bars']")
     private ExtendedWebElement burgerMenuMobile;
@@ -58,25 +56,32 @@ public class Header extends AbstractUIObject implements ICustomTypePageFactory, 
     @FindBy(xpath = "//*[@id=\"ACCOUNT\"]")
     private ExtendedWebElement accountBtn;
 
-    @FindBy(xpath = "//*[@id=\"fadein\"]/header//div[2]//div[2]/div[3]//li[1]")
+    @FindBy(xpath = "//a[text()='Customer Login']")
     private ExtendedWebElement customerLoginBtn;
+
+    @FindBy(xpath = "//a[text()=' Logout']")
+    private ExtendedWebElement logOutBtn;
+
+    @FindBy(xpath = "//*[@id=\"fadein\"]/header/div/div/div/div/div/div[2]/div/div[2]/div[3]/div/ul/li[4]/a")
+    private ExtendedWebElement myProfileBtn;
+
 
 
     public Header(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
-    public String checkChosenLanguage() {
+    public HomePage clickTitle(){
+        title.click();
+        return new HomePage(getDriver());
+    }
+    public String getChosenLanguage() {
         return languages.getText();
     }
 
-    public String checkChosenCurrency() {
-        return currency.getText();
-    }
-
-    public void selectCurrency(CurrencyEnum currencyEnum) {
-        currency.click();
-        listCurrency.stream().filter(d -> d.getElement().getText().equals(currencyEnum.getCurrency())).limit(1).forEach(k -> k.getElement().click());
+    public LoginPage clickLogOutButton() {
+        logOutBtn.click();
+        return new LoginPage(getDriver());
     }
 
     public void openBurgerMenu() {
@@ -85,19 +90,26 @@ public class Header extends AbstractUIObject implements ICustomTypePageFactory, 
 
     public void selectLanguage(LanguagesEnum languagesEnum) {
         languages.clickIfPresent();
-        listLanguages.stream().filter(f->f.getText().equals(languagesEnum.getLanguage().toLowerCase())).findFirst().orElseThrow(() ->
-                new IllegalStateException("Language "+ " is absent!")).click();
-//        listLanguages.stream().filter(f -> f.getText().equals(languagesEnum.getLanguage())).limit(1).forEach(e -> e.click());
+
+        //listLanguages.stream().filter(f -> f.getLanguageName().equals(languagesEnum)).limit(1).forEach(f -> f.clickLanguage());
     }
 
-    public void openLoginMenu() {
-        burgerMenuMobile.clickIfPresent();
-        accountBtn.click();
+    public void clickAccountDropdown() {
+        accountBtn.clickByJs();
     }
 
-    public LoginPage goToLoginPage() {
+
+    public LoginPage clickCustomLoginButton() {
         customerLoginBtn.click();
         return new LoginPage(getDriver());
+    }
+
+    public boolean checkTitleIsPresent() {
+        return title.isElementPresent() && accountBtn.isElementPresent();
+    }
+    public ProfilePage clickProfileButton(){
+        myProfileBtn.clickByJs();
+        return new ProfilePage(getDriver());
     }
 
 

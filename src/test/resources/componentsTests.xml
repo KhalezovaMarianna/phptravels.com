@@ -9,7 +9,7 @@
 
     <test name="Header tests">
         <classes>
-            <class name="testsPhptravels.headerTests.HeaderTests" />
+            <class name="testsPhptravels.componentsTests.ComponentsTests" />
         </classes>
     </test>
 

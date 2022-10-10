@@ -13,7 +13,7 @@ public class LoginPage extends AbstractPage implements  ICustomTypePageFactory,I
     private ExtendedWebElement loginTitle;
 
     @FindBy(xpath = "//input[@placeholder='Email']")
-    private ExtendedWebElement emailForm;
+    private ExtendedWebElement emailField;
 
     @FindBy(xpath = "//input[@placeholder='Password']")
     private ExtendedWebElement passwordForm;
@@ -35,11 +35,11 @@ public class LoginPage extends AbstractPage implements  ICustomTypePageFactory,I
         return new AccountPage(getDriver());
     }
 
-    public void fillEmailForm(String email){
-        emailForm.type(email);
+    public void fillEmailField(String email){
+        emailField.type(email);
     }
 
-    public void fillPasswordForm(String password){
+    public void fillPasswordField(String password){
         passwordForm.type(password);
     }
 

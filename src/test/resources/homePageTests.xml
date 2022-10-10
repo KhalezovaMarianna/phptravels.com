@@ -9,7 +9,7 @@
 
     <test name="Home Page tests">
         <classes>
-            <class name="testsPhptravels.homePageTests.HomePageTests"/>
+            <class name="testsPhptravels.pagesTests.HomePageTests"/>
         </classes>
 
     </test>
