@@ -18,11 +18,11 @@ public class ProfilePage extends AbstractPage implements IMobileUtils {
         super(driver);
     }
 
-    public boolean isOpened(){
+    public boolean isOpened() {
         return title.isElementPresent();
     }
 
-    public String checkUserIsCorrect(){
+    public String getEmail() {
         return emailField.getAttribute("value");
     }
 }

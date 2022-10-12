@@ -7,7 +7,7 @@ import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginPage extends AbstractPage implements  ICustomTypePageFactory,IMobileUtils {
+public class LoginPage extends AbstractPage implements ICustomTypePageFactory, IMobileUtils {
 
     @FindBy(xpath = "//h5[@class='modal-title title']")
     private ExtendedWebElement loginTitle;
@@ -26,20 +26,20 @@ public class LoginPage extends AbstractPage implements  ICustomTypePageFactory,I
         super(driver);
     }
 
-    public boolean isOpened(){
-       return loginTitle.isElementPresent();
+    public boolean isOpened() {
+        return loginTitle.isElementPresent();
     }
 
-    public AccountPage clickLoginButton(){
+    public AccountPage clickLoginButton() {
         loginBtn.click();
         return new AccountPage(getDriver());
     }
 
-    public void fillEmailField(String email){
+    public void fillEmailField(String email) {
         emailField.type(email);
     }
 
-    public void fillPasswordField(String password){
+    public void fillPasswordField(String password) {
         passwordForm.type(password);
     }
 

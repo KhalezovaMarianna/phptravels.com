@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import web.components.Footer;
 import web.components.Header;
 
-public class AccountPage extends AbstractPage implements ICustomTypePageFactory, IMobileUtils{
+public class AccountPage extends AbstractPage implements ICustomTypePageFactory, IMobileUtils {
 
     @FindBy(xpath = "//*[@id=\"fadein\"]/header/div")
     private Header header;
@@ -24,7 +24,7 @@ public class AccountPage extends AbstractPage implements ICustomTypePageFactory,
         super(driver);
     }
 
-    public boolean isOpened(){
+    public boolean isOpened() {
         return title.isElementPresent();
     }
 

@@ -20,7 +20,7 @@ public class ComponentsTests extends AbstractTest {
         homePage.open();
         Header header = homePage.getHeader();
         header.openBurgerMenu();
-        Assert.assertTrue(header.checkTitleIsPresent(),"Title isn't present");
+        Assert.assertTrue(header.checkTitleIsPresent(), "Title isn't present");
     }
 
     @Test
@@ -30,10 +30,10 @@ public class ComponentsTests extends AbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Footer footer = homePage.getFooter();
-        Assert.assertTrue(footer.checkCommunityFormIsPresent(),"Community form isn't present");
-        Assert.assertTrue(footer.checkLogoIsPresent(),"logo isn't present");
-        Assert.assertTrue(footer.checkMessengerLabelsArePresent(),"Messengers labels aren't present");
-        Assert.assertTrue(footer.checkServicesButtonsArePresent(),"Services buttons aren't present");
+        Assert.assertTrue(footer.checkCommunityFormIsPresent(), "Community form isn't present");
+        Assert.assertTrue(footer.checkLogoIsPresent(), "logo isn't present");
+        Assert.assertTrue(footer.checkMessengerLabelsArePresent(), "Messengers labels aren't present");
+        Assert.assertTrue(footer.checkServicesButtonsArePresent(), "Services buttons aren't present");
     }
 
     @Test
@@ -45,9 +45,9 @@ public class ComponentsTests extends AbstractTest {
         Header header = homePage.getHeader();
         header.openBurgerMenu();
         header.selectLanguage(LanguagesEnum.ENGLISH);
-        Assert.assertEquals(header.getChosenLanguage(),LanguagesEnum.ENGLISH.getLanguage().toUpperCase(),"Chosen language isn't correct");
+        Assert.assertEquals(header.getChosenLanguage(), LanguagesEnum.ENGLISH.getLanguage().toUpperCase(), "Chosen language isn't correct");
         header.selectLanguage(LanguagesEnum.TURKISH);
-        Assert.assertEquals(header.getChosenLanguage(),LanguagesEnum.TURKISH.getLanguage().toUpperCase(),"Chosen language isn't correct");
+        Assert.assertEquals(header.getChosenLanguage(), LanguagesEnum.TURKISH.getLanguage().toUpperCase(), "Chosen language isn't correct");
 //        header.choiceLanguage(LanguagesEnum.RUSSIAN);
 //        Assert.assertEquals(header.checkChosenLanguage(),LanguagesEnum.RUSSIAN.getLanguage().toUpperCase(),"Chosen language isn't correct");
 //        header.choiceLanguage(LanguagesEnum.PHILIPPINE);
@@ -67,21 +67,4 @@ public class ComponentsTests extends AbstractTest {
 //        header.choiceLanguage(LanguagesEnum.CHINESE);
 //        Assert.assertEquals(header.checkChosenLanguage(),LanguagesEnum.CHINESE.getLanguage().toUpperCase(),"Chosen language isn't correct");
     }
-
-
-    @Test
-    @MethodOwner(owner = "marianna_khalezova")
-    @TestLabel(name = "feature", value = {"web", "acceptance"})
-    public void testCheckChosenCurrencyIsCorrect() {
-        HomePage homePage = new HomePage(getDriver());
-        homePage.open();
-        Header header = homePage.getHeader();
-        header.openBurgerMenu();
-
-
-    }
-
-
-
-
 }

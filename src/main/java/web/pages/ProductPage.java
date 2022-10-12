@@ -18,11 +18,11 @@ public class ProductPage extends AbstractPage implements IMobileUtils {
         super(driver);
     }
 
-    public boolean isOpened(){
+    public boolean isOpened() {
         return hotelsDetailsBtn.isElementPresent();
     }
 
-    public OrderPage clickBookNow(){
+    public OrderPage clickBookNowButton() {
         bookNowFirstBtn.click();
         return new OrderPage(getDriver());
     }

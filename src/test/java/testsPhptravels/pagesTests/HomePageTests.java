@@ -36,7 +36,7 @@ public class HomePageTests extends AbstractTest {
         homePage.typeFlightFromField(R.TESTDATA.get("TEST_AIRPORT"));
         homePage.typeDestinationField(R.TESTDATA.get("TEST_DESTINATION"));
         SearchPage searchPage = homePage.clickFlightSearchButton();
-        Assert.assertTrue(searchPage.isEmptySearch());
+        Assert.assertTrue(searchPage.isEmptySearch(), "Search page is empty and opened");
     }
 
     @Test
@@ -45,8 +45,8 @@ public class HomePageTests extends AbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isOpened(), "Home page isn't open");
-        Assert.assertTrue(homePage.checkTopFlightsArePresent(), "Top flights are present");
-        Assert.assertTrue(homePage.checkFeaturedHotelsArePresent(), "Featured hotels are present");
+        Assert.assertTrue(homePage.checkTopFlightsTitleIsPresent(), "Top flights aren't present");
+        Assert.assertTrue(homePage.checkFeaturedHotelsArePresent(), "Featured hotels aren't present");
     }
 
     @Test
@@ -56,13 +56,13 @@ public class HomePageTests extends AbstractTest {
         homePage.open();
         Assert.assertTrue(homePage.isOpened(), "Home page isn't open");
         homePage.typeCityHotelsField(R.TESTDATA.get("TEST_CITY_HOTEL"));
-        SearchPage searchPage = homePage.clickSearchHotelsBtn();
+        SearchPage searchPage = homePage.clickSearchHotelsButton();
         Header header = searchPage.getHeader();
-        Assert.assertTrue(searchPage.isOpened(),"Search page is open");
+        Assert.assertTrue(searchPage.isOpened(), "Search page is open");
         header.clickTitle();
-        Assert.assertTrue(homePage.isOpened(),"Home page isn't open");
+        Assert.assertTrue(homePage.isOpened(), "Home page isn't open");
 //        Assert.assertTrue(homePage.checkRecentSearchesIsPresent(),"Recent searches isn't present");
-        Assert.assertEquals(homePage.getRecentHotel(),R.TESTDATA.get("TEST_CITY_HOTEL"),"Hotels isn't present");
+        Assert.assertEquals(homePage.getRecentHotel(), R.TESTDATA.get("TEST_CITY_HOTEL"), "Hotels isn't present");
     }
 
 

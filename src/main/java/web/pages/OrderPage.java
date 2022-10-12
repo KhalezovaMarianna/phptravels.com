@@ -14,56 +14,49 @@ public class OrderPage extends AbstractPage {
     @FindBy(xpath = "//label[@for=\"agreechb\"]")
     private ExtendedWebElement continuingBtn;
 
-    @FindBy(xpath = "//input[contains(@name, \"%s\"]")
+    @FindBy(xpath = "//input[contains(@name, \"%s\")]")
     private ExtendedWebElement textField;
-
-//    @FindBy(xpath = "")
-//    private ExtendedWebElement;
-//
-//    @FindBy(xpath = "")
-//    private ExtendedWebElement ;
-//
-//    @FindBy(xpath = "")
-//    private ExtendedWebElement;
-//
-//    @FindBy(xpath = "")
-//    private ExtendedWebElement ;
-//
-//    @FindBy(xpath = "")
-//    private ExtendedWebElement;
 
     @FindBy(xpath = "//button[@id=\"booking\"]")
     private ExtendedWebElement confirmBookingBtn;
+
+    @FindBy(xpath = "(//li/strong)[1]")
+    private ExtendedWebElement totalPrice;
 
     public OrderPage(WebDriver driver) {
         super(driver);
     }
 
-    public boolean isOpened(){
+    public boolean isOpened() {
         return title.isElementPresent();
     }
 
-    public BookingInvoicePage clickConfirmBookingButton(){
+    public BookingInvoicePage clickConfirmBookingButton() {
         continuingBtn.click();
         confirmBookingBtn.click();
         return new BookingInvoicePage(getDriver());
     }
 
-    public void fillFirstNameField(String firstName){
+    public void fillFirstNameField(String firstName) {
         textField.format("firstname").type(firstName);
     }
-    public void fillLastNameField(String lastName){
+
+    public void fillLastNameField(String lastName) {
         textField.format("lastname").type(lastName);
     }
-    public void fillEmailField(String email){
+
+    public void fillEmailField(String email) {
         textField.format("email").type(email);
     }
-    public void fillPhoneField(String phone){
+
+    public void fillPhoneField(String phone) {
         textField.format("phone").type(phone);
     }
-    public void fillAddressField(String address){
+
+    public void fillAddressField(String address) {
         textField.format("address").type(address);
     }
 
+    public String getTotalPrice(){return totalPrice.getText().substring(4);}
 
 }

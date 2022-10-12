@@ -1,6 +1,5 @@
 package testsPhptravels.loginTests;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.zebrunner.agent.core.annotation.TestLabel;
@@ -12,9 +11,6 @@ import web.pages.AccountPage;
 import web.pages.HomePage;
 import web.pages.LoginPage;
 import web.pages.ProfilePage;
-import web.utils.enums.CurrencyEnum;
-import web.utils.enums.LanguagesEnum;
-import web.utils.services.AuthenticationService;
 
 public class LoginTests extends BaseTest {
 
@@ -36,7 +32,7 @@ public class LoginTests extends BaseTest {
     @Test()
     @MethodOwner(owner = "marianna_khalezova")
     @TestLabel(name = "feature", value = {"web", "acceptance"})
-    public void testCheckLoginIsWork() {
+    public void testCheckLoginIsWork() {//??
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isOpened(), "Home page is not opened");
@@ -51,18 +47,17 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(logInPage.isOpened(), "Login isn't success");
     }
 
-
     @Test()
     @MethodOwner(owner = "marianna_khalezova")
     @TestLabel(name = "feature", value = {"web", "acceptance"})
     public void testCheckLogOutIsWork() {
         AccountPage accountPage = authenticationService.logIn();
-        Assert.assertTrue(accountPage.isOpened(),"Account page isn't open");
+        Assert.assertTrue(accountPage.isOpened(), "Account page isn't open");
         Header header = accountPage.getHeader();
         header.openBurgerMenu();
         header.clickAccountDropdown();
         LoginPage loginPage = header.clickLogOutButton();
-        Assert.assertTrue(loginPage.isOpened(),"Login page isn't opened");
+        Assert.assertTrue(loginPage.isOpened(), "Login page isn't opened");
     }
 
     @Test()
@@ -83,6 +78,6 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(logInPage.isOpened(), "Login isn't success");
         header.clickAccountDropdown();
         ProfilePage profilePage = header.clickProfileButton();
-        Assert.assertEquals(profilePage.checkUserIsCorrect(),R.TESTDATA.get("TEST_USER"),"User isn't correct");
+        Assert.assertEquals(profilePage.getEmail(), R.TESTDATA.get("TEST_USER"), "User isn't correct");
     }
 }
