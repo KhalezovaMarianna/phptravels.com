@@ -21,7 +21,7 @@ public class SearchPage extends AbstractPage implements ICustomTypePageFactory, 
     @FindBy(xpath = "//*[@id=\"fadein\"]/header/div")
     private Header header;
 
-    @FindBy(xpath = "//*[@id=\"fadein\"]/section[11]")
+    @FindBy(xpath = "//*[@id=\"fadein\"]/section[4]")
     private Footer footer;
 
     @FindBy(xpath = "//div/p/strong[contains(text(),\"Dates\")]/parent::p")

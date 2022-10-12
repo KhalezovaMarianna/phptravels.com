@@ -61,9 +61,8 @@ public class HomePageTests extends AbstractTest {
         Assert.assertTrue(searchPage.isOpened(), "Search page is open");
         header.clickTitle();
         Assert.assertTrue(homePage.isOpened(), "Home page isn't open");
-//        Assert.assertTrue(homePage.checkRecentSearchesIsPresent(),"Recent searches isn't present");
         Assert.assertEquals(homePage.getRecentHotel(), R.TESTDATA.get("TEST_CITY_HOTEL"), "Hotels isn't present");
     }
-
-
 }
+
+

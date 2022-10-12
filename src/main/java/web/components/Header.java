@@ -3,10 +3,12 @@ package web.components;
 import com.qaprosoft.carina.core.foundation.utils.factory.ICustomTypePageFactory;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import web.pages.FlightsPage;
 import web.pages.HomePage;
 import web.pages.LoginPage;
 import web.pages.ProfilePage;
@@ -41,11 +43,11 @@ public class Header extends AbstractUIObject implements ICustomTypePageFactory, 
     private ExtendedWebElement offers;
 
     @FindBy(xpath = "//button[@id='languages']")
-    private ExtendedWebElement languages;
+    private ExtendedWebElement language;
 
+    @FindBy(xpath = "//a[@class=\"dropdown-item waves-effect\"]")
+    private List<ExtendedWebElement> languages;
 
-    @FindBy(xpath = ".//ul[@class=\"dropdown-menu show\"]/li/a")
-    private List<LanguageContainer> listLanguages;
 
     @FindBy(xpath = "//button[@id='currency']")
     private ExtendedWebElement currency;
@@ -65,18 +67,26 @@ public class Header extends AbstractUIObject implements ICustomTypePageFactory, 
     @FindBy(xpath = "//*[@id=\"fadein\"]/header/div/div/div/div/div/div[2]/div/div[2]/div[3]/div/ul/li[4]/a")
     private ExtendedWebElement myProfileBtn;
 
-
-
     public Header(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
-    public HomePage clickTitle(){
+    public HomePage clickTitle() {
         title.click();
         return new HomePage(getDriver());
     }
-    public String getChosenLanguage() {
-        return languages.getText();
+
+    public String getLanguage() {
+        return language.getAttribute("name");
+    }
+
+    public void clickLanguageButton() {
+        language.clickByJs();
+    }
+
+    public <T extends AbstractPage> T setLanguage(LanguagesEnum languagesEnum, AbstractPage abstractPage) {
+        languages.stream().filter(f -> f.getText().equals(languagesEnum.getLanguage())).limit(1).forEach(e -> e.click());
+        return (T) abstractPage;
     }
 
     public LoginPage clickLogOutButton() {
@@ -88,30 +98,27 @@ public class Header extends AbstractUIObject implements ICustomTypePageFactory, 
         burgerMenuMobile.clickIfPresent(2);
     }
 
-    public void selectLanguage(LanguagesEnum languagesEnum) {
-        languages.clickIfPresent();
-
-        //listLanguages.stream().filter(f -> f.getLanguageName().equals(languagesEnum)).limit(1).forEach(f -> f.clickLanguage());
-    }
-
     public void clickAccountDropdown() {
         accountBtn.clickByJs();
     }
-
 
     public LoginPage clickCustomLoginButton() {
         customerLoginBtn.click();
         return new LoginPage(getDriver());
     }
 
+    public FlightsPage clickFlightsButton() {
+        flights.clickByJs();
+        return new FlightsPage(getDriver());
+    }
+
     public boolean checkTitleIsPresent() {
         return title.isElementPresent() && accountBtn.isElementPresent();
     }
-    public ProfilePage clickProfileButton(){
+
+    public ProfilePage clickProfileButton() {
         myProfileBtn.clickByJs();
         return new ProfilePage(getDriver());
     }
-
-
 }
 

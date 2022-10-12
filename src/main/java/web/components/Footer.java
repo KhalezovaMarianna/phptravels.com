@@ -18,14 +18,23 @@ public class Footer extends AbstractUIObject implements ICustomTypePageFactory {
     @FindBy(xpath = "//a[@href=\"supprt\"]")
     private ExtendedWebElement supportBtn;
 
+    @FindBy(xpath = "//input[@type=\"email\"]")
+    private ExtendedWebElement emailField;
+
     @FindBy(xpath = "//a[@href=\"services\"]")
-    ExtendedWebElement servicesBtn;
+    private ExtendedWebElement servicesBtn;
 
     @FindBy(xpath = "//div[@class=\"subscriber-box\"]")
     private ExtendedWebElement communityForm;
 
     @FindBy(xpath = "//ul[@class=\"social-profile\"]")
     private ExtendedWebElement messengerLabels;
+
+    @FindBy(xpath = "//div[@class=\"wow fadeIn subscriberesponse cw\"]")
+    private ExtendedWebElement confirmationText;
+
+    @FindBy(xpath = "//button[@id=\"email_subscribe\"]")
+    private ExtendedWebElement subscribeBtn;
 
     public Footer(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
@@ -44,6 +53,19 @@ public class Footer extends AbstractUIObject implements ICustomTypePageFactory {
     }
 
     public boolean checkServicesButtonsArePresent() {
-        return  servicesBtn.isElementPresent() && supportBtn.isElementPresent();
+        return servicesBtn.isElementPresent() && supportBtn.isElementPresent();
     }
+
+    public void fillEmailField(String email) {
+        emailField.type(email);
+    }
+
+    public String getConfirmationText() {
+        return confirmationText.getAttribute("text");
+    }
+
+    public void clickSubscribeButton() {
+        subscribeBtn.click();
+    }
+
 }
