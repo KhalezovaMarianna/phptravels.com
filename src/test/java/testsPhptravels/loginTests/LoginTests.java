@@ -6,17 +6,17 @@ import com.zebrunner.agent.core.annotation.TestLabel;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import testsPhptravels.base.BaseTest;
-import web.components.Header;
-import web.pages.AccountPage;
-import web.pages.HomePage;
-import web.pages.LoginPage;
-import web.pages.ProfilePage;
+import webPhptravel.components.Header;
+import webPhptravel.pages.AccountPage;
+import webPhptravel.pages.HomePage;
+import webPhptravel.pages.LoginPage;
+import webPhptravel.pages.ProfilePage;
 
 public class LoginTests extends BaseTest {
 
     @Test()
     @MethodOwner(owner = "marianna_khalezova")
-    @TestLabel(name = "feature", value = {"web", "acceptance"})
+    @TestLabel(name = "feature", value = {"webPhptravel", "acceptance"})
     public void testCheckLoginIsNotWorkWithoutData() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
@@ -31,7 +31,7 @@ public class LoginTests extends BaseTest {
 
     @Test()
     @MethodOwner(owner = "marianna_khalezova")
-    @TestLabel(name = "feature", value = {"web", "acceptance"})
+    @TestLabel(name = "feature", value = {"webPhptravel", "acceptance"})
     public void testCheckLoginIsWork() {//??
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
@@ -49,7 +49,7 @@ public class LoginTests extends BaseTest {
 
     @Test()
     @MethodOwner(owner = "marianna_khalezova")
-    @TestLabel(name = "feature", value = {"web", "acceptance"})
+    @TestLabel(name = "feature", value = {"webPhptravel", "acceptance"})
     public void testCheckLogOutIsWork() {
         AccountPage accountPage = authenticationService.logIn();
         Assert.assertTrue(accountPage.isOpened(), "Account page isn't open");
@@ -62,7 +62,7 @@ public class LoginTests extends BaseTest {
 
     @Test()
     @MethodOwner(owner = "marianna_khalezova")
-    @TestLabel(name = "feature", value = {"web", "acceptance"})
+    @TestLabel(name = "feature", value = {"webPhptravel", "acceptance"})
     public void testCheckLoginUserIsCorrect() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();

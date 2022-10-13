@@ -1,4 +1,4 @@
-package web.components;
+package webPhptravel.components;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.ICustomTypePageFactory;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;

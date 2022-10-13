@@ -5,7 +5,7 @@ import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import web.pages.*;
+import webPhptravel.pages.*;
 
 public class SearchPageTests extends AbstractTest {
 

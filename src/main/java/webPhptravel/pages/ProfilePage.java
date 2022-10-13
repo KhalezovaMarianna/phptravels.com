@@ -1,4 +1,4 @@
-package web.pages;
+package webPhptravel.pages;
 
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;

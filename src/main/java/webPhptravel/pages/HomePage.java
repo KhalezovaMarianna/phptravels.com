@@ -1,4 +1,4 @@
-package web.pages;
+package webPhptravel.pages;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.ICustomTypePageFactory;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
@@ -6,8 +6,8 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import web.components.Footer;
-import web.components.Header;
+import webPhptravel.components.Footer;
+import webPhptravel.components.Header;
 
 import java.security.SecureRandom;
 
@@ -76,7 +76,7 @@ public class HomePage extends AbstractPage implements ICustomTypePageFactory, IM
     @FindBy(xpath = "(//h3[@class=\"deal__title\"])[%s]")
     private ExtendedWebElement randomElementTopFlights;
 
-    @FindBy(xpath = "//li[text()=\"Belarus\"]")
+    @FindBy(xpath = "//li[text()=\"Belarus\"]")//abstract
     private ExtendedWebElement belarusLabel;
 
 
@@ -98,10 +98,9 @@ public class HomePage extends AbstractPage implements ICustomTypePageFactory, IM
         return new SubmissionFormPage(getDriver());
     }
 
-    public SearchPage openTopFlightByIndex(){
+    public SearchPage openTopFlightByIndex() {
         var random = new SecureRandom();
         int randomIndex = random.nextInt(10);
-        System.out.println(randomIndex);
         randomElementTopFlights.format(randomIndex).click();
         return new SearchPage(getDriver());
     }
@@ -152,7 +151,7 @@ public class HomePage extends AbstractPage implements ICustomTypePageFactory, IM
         homeBtn.format("tours").click();
     }
 
-    public void clickSearchTabVisa() {
+    public void clickSearchTabVisa() {//work around
         homeBtn.format("flights").click();
         homeBtn.format("hotels").click();
         homeBtn.format("visa").click();
@@ -165,39 +164,25 @@ public class HomePage extends AbstractPage implements ICustomTypePageFactory, IM
         homeBtn.format("hotels").click();
     }
 
-    public boolean checkIsFlightsFormPresent() {
-        if (checkingHomeBtn.format("flights").isElementPresent()) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean isFlightsFormPresent() {
+        return checkingHomeBtn.format("flights").isElementPresent();
     }
 
-    public boolean checkIsHotelsFormPresent() {
-        if (checkingHomeBtn.format("hotels-search").isElementPresent()) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean isHotelsFormPresent() {
+        return checkingHomeBtn.format("hotels-search").isElementPresent();
+
     }
 
-    public boolean checkIsToursFormPresent() {
-        if (checkingHomeBtn.format("tours-search").isElementPresent()) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean isToursFormPresent() {
+        return checkingHomeBtn.format("tours-search").isElementPresent();
+
     }
 
-    public boolean checkIsVisaFormPresent() {
-        if (checkingHomeBtn.format("visa-submit").isElementPresent()) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean isVisaFormPresent() {
+        return (checkingHomeBtn.format("visa-submit").isElementPresent());
     }
 
-    public boolean checkTopFlightsTitleIsPresent() {//isTopFlightsItemsPresent
+    public boolean isTopFlightsTitlePresent() {//isTopFlightsItemsPresent TODO:
         return topFlights.isElementPresent();
     }
 
@@ -234,3 +219,4 @@ public class HomePage extends AbstractPage implements ICustomTypePageFactory, IM
         return footer;
     }
 }
+

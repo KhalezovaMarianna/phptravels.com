@@ -7,7 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import web.pages.*;
+import webPhptravel.pages.*;
 
 public class OrderPageTests extends AbstractTest {
     private static final Logger LOGGER = LogManager.getLogger(OrderPageTests.class);
@@ -81,12 +81,10 @@ public class OrderPageTests extends AbstractTest {
         Assert.assertTrue(homePage.isOpened(), "Home page isn't opened");
         SearchPage searchPage = homePage.openTopFlightByIndex();
         if (searchPage.isEmptySearch()) {
-            LOGGER.info("Test isn't correct");
+            LOGGER.info("Test isn't correct");//assert
         } else {
             String totalCount = searchPage.getTotalCount();
-            System.out.println(totalCount);
             OrderPage orderPage = searchPage.clickFlightButtonByIndex();
-            System.out.println(orderPage.getTotalPrice());
             Assert.assertTrue(orderPage.isOpened(), "Order page isn't opened");
             Assert.assertEquals(orderPage.getTotalPrice(), totalCount, "Total count isn't correct");
         }

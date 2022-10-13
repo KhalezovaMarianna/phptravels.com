@@ -1,23 +1,22 @@
 package testsPhptravels.componentsTests;
 
 import com.qaprosoft.carina.core.foundation.AbstractTest;
-import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import web.components.Footer;
-import web.components.Header;
-import web.pages.FlightsPage;
-import web.pages.HomePage;
-import web.utils.enums.LanguagesEnum;
+import webPhptravel.components.Footer;
+import webPhptravel.components.Header;
+import webPhptravel.pages.FlightsPage;
+import webPhptravel.pages.HomePage;
+import webPhptravel.utils.enums.LanguagesEnum;
 
 
 public class ComponentsTests extends AbstractTest {
 
     @Test
     @MethodOwner(owner = "marianna_khalezova")
-    @TestLabel(name = "feature", value = {"web", "acceptance"})
+    @TestLabel(name = "feature", value = {"webPhptravel", "acceptance"})
     public void testCheckHeaderIsPresent() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
@@ -28,7 +27,7 @@ public class ComponentsTests extends AbstractTest {
 
     @Test
     @MethodOwner(owner = "marianna_khalezova")
-    @TestLabel(name = "feature", value = {"web", "acceptance"})
+    @TestLabel(name = "feature", value = {"webPhptravel", "acceptance"})
     public void testCheckFooterIsPresent() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();

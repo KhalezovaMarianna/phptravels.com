@@ -1,7 +1,6 @@
-package web.pages;
+package webPhptravel.pages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -20,7 +19,7 @@ public class OrderPage extends AbstractPage {
     @FindBy(xpath = "//button[@id=\"booking\"]")
     private ExtendedWebElement confirmBookingBtn;
 
-    @FindBy(xpath = "(//li/strong)[1]")
+    @FindBy(xpath = "(//li/strong)[1]")//TODO locator
     private ExtendedWebElement totalPrice;
 
     public OrderPage(WebDriver driver) {
@@ -57,6 +56,6 @@ public class OrderPage extends AbstractPage {
         textField.format("address").type(address);
     }
 
-    public String getTotalPrice(){return totalPrice.getText().substring(4);}
+    public String getTotalPrice(){return totalPrice.getText().substring(4);}//TODO number or string
 
 }

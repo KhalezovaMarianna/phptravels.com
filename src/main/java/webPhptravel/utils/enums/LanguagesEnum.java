@@ -1,4 +1,4 @@
-package web.utils.enums;
+package webPhptravel.utils.enums;
 
 public enum LanguagesEnum {
     TURKISH("Turkish"),

@@ -1,4 +1,4 @@
-package web.pages;
+package webPhptravel.pages;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.ICustomTypePageFactory;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
@@ -6,8 +6,8 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import web.components.Footer;
-import web.components.Header;
+import webPhptravel.components.Footer;
+import webPhptravel.components.Header;
 
 public class AccountPage extends AbstractPage implements ICustomTypePageFactory, IMobileUtils {
 

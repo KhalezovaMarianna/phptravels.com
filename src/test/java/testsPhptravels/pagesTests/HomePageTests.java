@@ -5,9 +5,9 @@ import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import web.components.Header;
-import web.pages.HomePage;
-import web.pages.SearchPage;
+import webPhptravel.components.Header;
+import webPhptravel.pages.HomePage;
+import webPhptravel.pages.SearchPage;
 
 public class HomePageTests extends AbstractTest {
     @Test
@@ -17,13 +17,13 @@ public class HomePageTests extends AbstractTest {
         homePage.open();
         Assert.assertTrue(homePage.isOpened(), "Home page isn't open");
         homePage.clickSearchTabVisa();
-        Assert.assertTrue(homePage.checkIsVisaFormPresent(), "Visa button isn't work");
+        Assert.assertTrue(homePage.isVisaFormPresent(), "Visa button isn't work");
         homePage.clickSearchTabHotels();
-        Assert.assertTrue(homePage.checkIsHotelsFormPresent(), "Hotels button isn't work");
+        Assert.assertTrue(homePage.isHotelsFormPresent(), "Hotels button isn't work");
         homePage.clickSearchTabFlights();
-        Assert.assertFalse(homePage.checkIsFlightsFormPresent(), "Flights button isn't work");
+        Assert.assertFalse(homePage.isFlightsFormPresent(), "Flights button isn't work");
         homePage.clickSearchTabTours();
-        Assert.assertTrue(homePage.checkIsToursFormPresent(), "Tours button isn't work");
+        Assert.assertTrue(homePage.isToursFormPresent(), "Tours button isn't work");
     }
 
     @Test
@@ -45,7 +45,7 @@ public class HomePageTests extends AbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isOpened(), "Home page isn't open");
-        Assert.assertTrue(homePage.checkTopFlightsTitleIsPresent(), "Top flights aren't present");
+        Assert.assertTrue(homePage.isTopFlightsTitlePresent(), "Top flights aren't present");
         Assert.assertTrue(homePage.checkFeaturedHotelsArePresent(), "Featured hotels aren't present");
     }
 

@@ -3,7 +3,7 @@
 
     <parameter name="suiteOwner" value="qpsdemo"/>
     <parameter name="jenkinsJobName" value="Header-tests"/>
-    <parameter name="jenkinsJobType" value="web"/>
+    <parameter name="jenkinsJobType" value="webPhptravel"/>
 
     <parameter name="jenkinsEnvironments" value="DEMO"/>
 

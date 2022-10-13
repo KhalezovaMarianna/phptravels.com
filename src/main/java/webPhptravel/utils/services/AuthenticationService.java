@@ -1,12 +1,11 @@
-package web.utils.services;
+package webPhptravel.utils.services;
 
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.webdriver.IDriverPool;
-import org.testng.Assert;
-import web.components.Header;
-import web.pages.AccountPage;
-import web.pages.HomePage;
-import web.pages.LoginPage;
+import webPhptravel.components.Header;
+import webPhptravel.pages.AccountPage;
+import webPhptravel.pages.HomePage;
+import webPhptravel.pages.LoginPage;
 
 public class AuthenticationService implements IDriverPool {
 

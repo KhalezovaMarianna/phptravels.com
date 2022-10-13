@@ -1,4 +1,4 @@
-package web.components;
+package webPhptravel.components;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.ICustomTypePageFactory;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
@@ -8,39 +8,39 @@ import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import web.pages.FlightsPage;
-import web.pages.HomePage;
-import web.pages.LoginPage;
-import web.pages.ProfilePage;
-import web.utils.enums.LanguagesEnum;
+import webPhptravel.pages.FlightsPage;
+import webPhptravel.pages.HomePage;
+import webPhptravel.pages.LoginPage;
+import webPhptravel.pages.ProfilePage;
+import webPhptravel.utils.enums.LanguagesEnum;
 
 import java.util.List;
 
 public class Header extends AbstractUIObject implements ICustomTypePageFactory, IMobileUtils {
 
     @FindBy(xpath = "//div[@class=\"logo\"]")
-    private ExtendedWebElement title;
+    private ExtendedWebElement titleBtn;
 
-    @FindBy(xpath = "//a[@title='hotels']")
-    private ExtendedWebElement hotels;
+    @FindBy(xpath = "//a[@title='hotels']")//btn
+    private ExtendedWebElement hotelsBtn;
 
     @FindBy(xpath = "//a[@title='flights']")
-    private ExtendedWebElement flights;
+    private ExtendedWebElement flightsBtn;
 
     @FindBy(xpath = "//a[@title='tours']")
-    private ExtendedWebElement tours;
+    private ExtendedWebElement toursBtn;
 
     @FindBy(xpath = "//a[@title='cars']")
-    private ExtendedWebElement transfers;
+    private ExtendedWebElement transfersBtn;
 
     @FindBy(xpath = "//a[@title='visa']")
-    private ExtendedWebElement visa;
+    private ExtendedWebElement visaBtn;
 
     @FindBy(xpath = "//a[@title='blog']")
-    private ExtendedWebElement blog;
+    private ExtendedWebElement blogBtn;
 
     @FindBy(xpath = "//a[@title='offers']")
-    private ExtendedWebElement offers;
+    private ExtendedWebElement offersBtn;
 
     @FindBy(xpath = "//button[@id='languages']")
     private ExtendedWebElement language;
@@ -72,7 +72,7 @@ public class Header extends AbstractUIObject implements ICustomTypePageFactory, 
     }
 
     public HomePage clickTitle() {
-        title.click();
+        titleBtn.click();
         return new HomePage(getDriver());
     }
 
@@ -84,7 +84,7 @@ public class Header extends AbstractUIObject implements ICustomTypePageFactory, 
         language.clickByJs();
     }
 
-    public <T extends AbstractPage> T setLanguage(LanguagesEnum languagesEnum, AbstractPage abstractPage) {
+    public <T extends AbstractPage> T setLanguage(LanguagesEnum languagesEnum, AbstractPage abstractPage) {    //void
         languages.stream().filter(f -> f.getText().equals(languagesEnum.getLanguage())).limit(1).forEach(e -> e.click());
         return (T) abstractPage;
     }
@@ -108,12 +108,12 @@ public class Header extends AbstractUIObject implements ICustomTypePageFactory, 
     }
 
     public FlightsPage clickFlightsButton() {
-        flights.clickByJs();
+        flightsBtn.clickByJs();
         return new FlightsPage(getDriver());
     }
 
     public boolean checkTitleIsPresent() {
-        return title.isElementPresent() && accountBtn.isElementPresent();
+        return titleBtn.isElementPresent() && accountBtn.isElementPresent();
     }
 
     public ProfilePage clickProfileButton() {

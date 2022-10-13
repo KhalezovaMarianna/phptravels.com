@@ -1,10 +1,10 @@
-package web.pages;
+package webPhptravel.pages;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import web.components.Footer;
-import web.components.Header;
+import webPhptravel.components.Footer;
+import webPhptravel.components.Header;
 
 public class FlightsPage extends AbstractPage {
 

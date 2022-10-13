@@ -1,4 +1,4 @@
-package web.pages;
+package webPhptravel.pages;
 
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.factory.ICustomTypePageFactory;
@@ -7,8 +7,8 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import web.components.Footer;
-import web.components.Header;
+import webPhptravel.components.Footer;
+import webPhptravel.components.Header;
 
 public class SearchPage extends AbstractPage implements ICustomTypePageFactory, IMobileUtils {
 
@@ -39,7 +39,7 @@ public class SearchPage extends AbstractPage implements ICustomTypePageFactory, 
     @FindBy(xpath = "//div[@class=\"card-header\"]")
     private ExtendedWebElement searchFilterTitle;
 
-    @FindBy(xpath = "//div/p/strong[contains(text(),\"1 Nights \")]/parent::p")
+    @FindBy(xpath = "//div/p/strong[contains(text(),\"1 Nights \")]/parent::p")//Locator TODO
     private ExtendedWebElement dataHotels;
 
     @FindBy(xpath = "(//button/strong)[%s]")
@@ -62,12 +62,12 @@ public class SearchPage extends AbstractPage implements ICustomTypePageFactory, 
         return new HomePage(getDriver());
     }
 
-    public ProductPage clickHotelButtonByIndex() {
+    public ProductPage clickHotelButtonByIndex() {//Index  in test
         indexHotel.format(Integer.parseInt(R.TESTDATA.get("TEST_INDEX"))).click();
         return new ProductPage(getDriver());
     }
 
-    public OrderPage clickFlightButtonByIndex() {
+    public OrderPage clickFlightButtonByIndex() {//int
         flightBurtonByIndex.format(Integer.parseInt(R.TESTDATA.get("TEST_INDEX"))).click();
         return new OrderPage(getDriver());
     }
