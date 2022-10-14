@@ -7,19 +7,16 @@ import testsOrangehrmlive.base.BaseTest;
 import webOrangehrmlive.components.HamburgerMenu;
 import webOrangehrmlive.components.HeaderMenu;
 import webOrangehrmlive.pages.*;
-import webOrangehrmlive.utils.HamburgerButtonsEnum;
+import webOrangehrmlive.pages.headerPages.ChangePasswordPage;
+import webOrangehrmlive.pages.headerPages.PopUpAboutPage;
+import webOrangehrmlive.utils.enums.HamburgerButtonsEnum;
 
-public class HamburgerMenuTests extends BaseTest {
+public class ComponentsTests extends BaseTest {
 
     @Test
     @MethodOwner(owner = "Marianna")
     public void testCheckHamburgerMenuButtonIsWork() {
-        LoginPage loginPage = new LoginPage(getDriver());
-        loginPage.open();
-        Assert.assertTrue(loginPage.isOpened());
-        loginPage.fillUsernameField();
-        loginPage.fillPasswordField();
-        PimPage pimPage = loginPage.clickLoginButton();
+        PimPage pimPage = authorisationService.login();
         HeaderMenu headerMenu = pimPage.getHeaderMenu();
         headerMenu.openHamburgerMenu();
         HamburgerMenu hamburgerMenu = pimPage.getHamburgerMenu();
@@ -56,5 +53,22 @@ public class HamburgerMenuTests extends BaseTest {
         hamburgerMenu.openDifferencePages(HamburgerButtonsEnum.RECRUITMENT.getButton());
         RecruitmentPage recruitmentPage = new RecruitmentPage(getDriver());
         Assert.assertTrue(recruitmentPage.isOpened(),"Recruitment page isn't opened");
+    }
+
+    @Test
+    @MethodOwner(owner = "Marianna")
+    public void testCheckHeaderButtonsAreWork(){
+        PimPage pimPage = authorisationService.login();
+        HeaderMenu headerMenu = pimPage.getHeaderMenu();
+        headerMenu.clickProfileLabelButton();
+        ChangePasswordPage changePasswordPage=headerMenu.clickChangePasswordButton();
+        Assert.assertTrue(changePasswordPage.isOpened(),"Change password page isn't opened");
+        headerMenu.clickProfileLabelButton();
+        PopUpAboutPage popUpAboutPage = headerMenu.clickAboutButton();
+        Assert.assertTrue(popUpAboutPage.isOpened(),"About page isn't opened");
+        popUpAboutPage.clickCloseButton();
+        headerMenu.clickProfileLabelButton();
+        LoginPage loginPage = headerMenu.clickLogoutButton();
+        Assert.assertTrue(loginPage.isOpened(),"Login page isn't opened");
     }
 }
