@@ -1,12 +1,19 @@
 package testsOrangehrmlive.pagesTests;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import testsOrangehrmlive.base.BaseTest;
+import webOrangehrmlive.components.HamburgerMenu;
 import webOrangehrmlive.components.HeaderMenu;
+import webOrangehrmlive.components.PopUpForgetPassword;
 import webOrangehrmlive.pages.LoginPage;
 import webOrangehrmlive.pages.PimPage;
+import webOrangehrmlive.pages.loginPages.ForgetPasswordPage;
+import webOrangehrmlive.utils.enums.HamburgerButtonsEnum;
+import webOrangehrmlive.utils.enums.HeaderMenuButtonsEnum;
 
 
 public class LoginTests extends BaseTest {
@@ -16,20 +23,58 @@ public class LoginTests extends BaseTest {
     public void testLogin() {
         LoginPage loginPage = new LoginPage(getDriver());
         loginPage.open();
-        Assert.assertTrue(loginPage.isOpened(),"Login page isn't opened");
+        Assert.assertTrue(loginPage.isOpened(), "Login page isn't opened");
         loginPage.fillUsernameField("Admin");
         loginPage.fillPasswordField("admin123");
         PimPage pimPage = loginPage.clickLoginButton();
-        Assert.assertTrue(pimPage.isOpened(),"PIM page isn't opened");
+        Assert.assertTrue(pimPage.isOpened(), "PIM page isn't opened");
     }
 
     @Test
     @MethodOwner(owner = "Maarianna")
-    public void testLogout(){
-        PimPage pimPage = authorisationService.login();
-        HeaderMenu headerMenu=pimPage.getHeaderMenu();
-        headerMenu.clickProfileLabelButton();
-        LoginPage loginPage=headerMenu.clickLogoutButton();
-        Assert.assertTrue(loginPage.isOpened(),"Login page isn't opened");
+    public void testLogout() {
+        authorisationService.login();
+        navigationService.goToHeaderMenuButtonsPage(HeaderMenuButtonsEnum.LOGOUT.getButton());
+        LoginPage loginPage=new LoginPage(getDriver());
+        Assert.assertTrue(loginPage.isOpened(), "Login page isn't opened");
+    }
+
+    @Test
+    @MethodOwner(owner = "Marianna")
+    public void testCheckFormForgetPasswordIsWork() {
+        LoginPage loginPage = new LoginPage(getDriver());
+        loginPage.open();
+        Assert.assertTrue(loginPage.isOpened(), "Login page isn't opened");
+        ForgetPasswordPage forgetPasswordPage = loginPage.clickForgetPasswordButton();
+        Assert.assertTrue(forgetPasswordPage.isOpened(), "Page isn't opened");
+        forgetPasswordPage.fillUsernameForm(R.TESTDATA.get("TEST_ADMIN"));
+        PopUpForgetPassword popUpForgetPassword = forgetPasswordPage.clickResetBtn();
+        Assert.assertTrue(popUpForgetPassword.isOpened(), "Pop up isn't present");
+    }
+
+    @Test
+    @MethodOwner(owner = "Marianna")
+    public void testCheckFormForgetPasswordIsWorkNegative() {
+        LoginPage loginPage = new LoginPage(getDriver());
+        loginPage.open();
+        Assert.assertTrue(loginPage.isOpened(), "Login page isn't opened");
+        ForgetPasswordPage forgetPasswordPage = loginPage.clickForgetPasswordButton();
+        Assert.assertTrue(forgetPasswordPage.isOpened(), "Page isn't opened");
+        forgetPasswordPage.clickResetBtn();
+        Assert.assertTrue(forgetPasswordPage.isErrorMessagePresent(), "Reset password is success");
+    }
+
+    @Test
+    @MethodOwner(owner = "Marianna")
+    public void testCheckLoginHowUserNegative(){//
+        LoginPage loginPage= new LoginPage(getDriver());
+        loginPage.open();
+        Assert.assertTrue(loginPage.isOpened(), "Login page isn't opened");
+        loginPage.fillUsernameField("Masha");
+        loginPage.fillPasswordField("Masha_123");
+        PimPage pimPage = loginPage.clickLoginButton();
+//        HamburgerMenu hamburgerMenu = pimPage.getHamburgerMenu();
+//        Assert.assertTrue(hamburgerMenu.isAdminButtonPresent(),"User login isn't correct");
+        Assert.assertTrue(loginPage.isAlertPresented(),"Login is success");
     }
 }

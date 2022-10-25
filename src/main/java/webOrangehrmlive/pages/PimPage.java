@@ -19,18 +19,11 @@ public class PimPage extends AbstractPage {
     @FindBy(xpath = "//div[@class=\"oxd-table-filter\"]")
     private ExtendedWebElement title;
 
-    @FindBy(xpath = "(//a[@role=\"menuitem\"])[%s]")
+    @FindBy(xpath = "//a[text()=\"%s\"]")
     private ExtendedWebElement configurationAnyBtn;
 
     @FindBy(xpath = "//li[@class=\"oxd-topbar-body-nav-tab --parent\"]")
     private ExtendedWebElement configurationBtn;
-
-    @FindBy(xpath = "//i[@class=\"oxd-icon bi-three-dots-vertical\"]")
-    private ExtendedWebElement moreBtn;
-
-    @FindBy(xpath = "(//a[@class=\"oxd-topbar-body-nav-tab-link --more\"])[%s]")
-    private ExtendedWebElement moreAnyBtn;
-
     public PimPage(WebDriver driver) {
         super(driver);
     }
@@ -46,46 +39,8 @@ public class PimPage extends AbstractPage {
     public boolean isOpened() {
         return title.isElementPresent();
     }
-
-    public AddEmployeePage clickAddEmployeeButton(){
-        moreBtn.clickIfPresent();
-        moreAnyBtn.format("1").click();
-        return new AddEmployeePage(getDriver());
-    }
-
-    public ReportsPage clickReportsButton(){
-        moreBtn.clickIfPresent();
-        moreAnyBtn.format("2").click();
-        return new ReportsPage(getDriver());
-    }
-
-    public OptionalPage clickOptionalButton(){
+    public void clickPimButtons(String button){
         configurationBtn.clickIfPresent();
-        configurationAnyBtn.format("1").click();
-        return new OptionalPage(getDriver());
-    }
-
-    public CustomFieldsPage clickCustomFieldsButton(){
-        configurationBtn.clickIfPresent();
-        configurationAnyBtn.format("2").click();
-        return new CustomFieldsPage(getDriver());
-    }
-
-    public DataImportPage clickDataImportButton(){
-        configurationBtn.clickIfPresent();
-        configurationAnyBtn.format("3").click();
-        return new DataImportPage(getDriver());
-    }
-
-    public ReportingMethodsPage clickReportingMethodsButton(){
-        configurationBtn.clickIfPresent();
-        configurationAnyBtn.format("4").click();
-        return new ReportingMethodsPage(getDriver());
-    }
-
-    public TerminationReasonsPage clickTerminationReasonsButton(){
-        configurationBtn.clickIfPresent();
-        configurationAnyBtn.format("5").click();
-        return new TerminationReasonsPage(getDriver());
+        configurationAnyBtn.format(button).click();
     }
 }

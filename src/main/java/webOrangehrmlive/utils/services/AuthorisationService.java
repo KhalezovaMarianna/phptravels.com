@@ -6,7 +6,7 @@ import webOrangehrmlive.pages.LoginPage;
 import webOrangehrmlive.pages.PimPage;
 
 public class AuthorisationService implements IDriverPool {
-    public PimPage login() {
+    public void login() {
         LoginPage loginPage = new LoginPage(getDriver());
         loginPage.open();
         Assert.assertTrue(loginPage.isOpened(), "Login page isn't opened");
@@ -14,6 +14,5 @@ public class AuthorisationService implements IDriverPool {
         loginPage.fillPasswordField("admin123");
         PimPage pimPage = loginPage.clickLoginButton();
         Assert.assertTrue(pimPage.isOpened(), "PIM page isn't opened");
-        return new PimPage(getDriver());
     }
 }

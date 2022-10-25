@@ -17,4 +17,5 @@ public class OptionalPage extends AbstractPage {
     public boolean isOpened(){
         return title.isElementPresent();
     }
+
 }

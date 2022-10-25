@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite verbose="1" name="OrangeHR - Login Tests" parallel="methods">
+
+    <parameter name="suiteOwner" value="Marianna"/>
+    <parameter name="jenkinsJobName" value="Login-tests"/>
+    <parameter name="jenkinsJobType" value="webPhptravel"/>
+
+    <parameter name="jenkinsEnvironments" value="DEMO"/>
+
+    <test name="Components tests">
+        <classes>
+            <class name="testsPhptravels.componentsTests.ComponentsTests" />
+        </classes>
+    </test>
+
+</suite>
