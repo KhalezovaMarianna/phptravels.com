@@ -4,11 +4,19 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import webOrangehrmlive.pages.leavePage.ApplyPage;
+import webOrangehrmlive.pages.leavePage.CalendarPage;
 
 public class LeavePage extends AbstractPage {
 
     @FindBy(xpath = "//div[@class=\"oxd-table-filter\"]")
     private ExtendedWebElement title;
+
+    @FindBy(xpath = "//a[text()=\"Apply\"]")
+    private ExtendedWebElement applyBtn;
+
+
+
 
     public LeavePage(WebDriver driver) {
         super(driver);
@@ -17,4 +25,11 @@ public class LeavePage extends AbstractPage {
     public boolean isOpened() {
         return title.isElementPresent();
     }
+
+    public ApplyPage clickApplyButton(){
+        applyBtn.click();
+        return new ApplyPage(getDriver());
+    }
+
+
 }

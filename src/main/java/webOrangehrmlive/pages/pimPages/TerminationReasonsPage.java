@@ -10,7 +10,6 @@ public class TerminationReasonsPage extends AbstractPage {
     @FindBy(xpath = "//div[@class=\"orangehrm-header-container\"]")
     private ExtendedWebElement title;
 
-
     public TerminationReasonsPage(WebDriver driver) {
         super(driver);
     }

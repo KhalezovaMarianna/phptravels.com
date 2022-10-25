@@ -5,9 +5,7 @@ import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import webOrangehrmlive.pages.LoginPage;
-import webOrangehrmlive.pages.headerPages.ChangePasswordPage;
-import webOrangehrmlive.pages.headerPages.PopUpAboutPage;
+import webOrangehrmlive.utils.utils.ColorUtils;
 
 public class HeaderMenu extends AbstractUIObject {
 
@@ -17,39 +15,44 @@ public class HeaderMenu extends AbstractUIObject {
     @FindBy(xpath = "//img[@alt=\"profile picture\"]")
     private ExtendedWebElement profileLabelBtn;
 
-    @FindBy(xpath = "//a[text()=\"general.about\"]")
-    private ExtendedWebElement aboutBtn;
 
-    @FindBy(xpath = "//a[text()=\"general.change_password\"]")
-    private ExtendedWebElement changePasswordBtn;
+    @FindBy(xpath = "//a[text()=\"%s\"]")
+    private ExtendedWebElement profileBtn;
 
-    @FindBy(xpath = "//a[text()=\"general.logout\"]")
-    private ExtendedWebElement logoutBtn;
+    @FindBy(xpath = "//p[@class=\"oxd-userdropdown-name\"]")
+    private ExtendedWebElement profileName;
+
+    @FindBy(xpath = "//div[@class=\"oxd-topbar-header-title\"]")
+    private ExtendedWebElement header;
 
     public HeaderMenu(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
     public void openHamburgerMenu() {
-        hamburgerMenuBtn.click();
+        hamburgerMenuBtn.clickIfPresent();
     }
 
     public void clickProfileLabelButton() {
         profileLabelBtn.click();
     }
 
-    public LoginPage clickLogoutButton() {
-        logoutBtn.click();
-        return new LoginPage(getDriver());
+    public void clickProfileButtons(String button){
+        profileBtn.format(button).click();
     }
 
-    public PopUpAboutPage clickAboutButton() {
-        aboutBtn.click();
-        return new PopUpAboutPage(getDriver());
+    public String getFirstName(){
+        String str = profileName.format("firstName").getText();
+        return str.substring(0, str.indexOf(" "));
     }
 
-    public ChangePasswordPage clickChangePasswordButton() {
-        changePasswordBtn.click();
-        return new ChangePasswordPage(getDriver());
+    public int getPixels(){
+        return ColorUtils.colorOptions(getDriver(),header);
     }
+
+    public String getLastName(){
+        String str = profileName.format("lastName").getText();
+        return str.substring(str.indexOf(" ")+1);
+    }
+
 }

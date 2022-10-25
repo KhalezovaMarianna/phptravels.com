@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class ChangePasswordPage extends AbstractPage {
 
-    @FindBy(xpath = "//form[@class=\"oxd-form\"]")
+    @FindBy(xpath = "//h6[text()=\"Update Password\"]")
     private ExtendedWebElement title;
     public ChangePasswordPage(WebDriver driver) {
         super(driver);

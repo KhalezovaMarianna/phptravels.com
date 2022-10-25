@@ -5,10 +5,11 @@ import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import webOrangehrmlive.utils.enums.HamburgerButtonsEnum;
 
 public class HamburgerMenu extends AbstractUIObject {
 
-    @FindBy(xpath = "//a[@href=\"%s\"]")
+    @FindBy(xpath = "//span[text()=\"%s\"]")
     private ExtendedWebElement hamburgerMenuBtn;
 
     @FindBy(xpath = "//i[@class=\"oxd-icon bi-x oxd-sidepanel-header-close\"]")
@@ -20,5 +21,9 @@ public class HamburgerMenu extends AbstractUIObject {
 
     public void openDifferencePages(String button) {
         hamburgerMenuBtn.format(button).click();
+    }
+
+    public boolean isAdminButtonPresent(){
+        return hamburgerMenuBtn.format(HamburgerButtonsEnum.ADMIN.getButton()).isElementPresent();
     }
 }
