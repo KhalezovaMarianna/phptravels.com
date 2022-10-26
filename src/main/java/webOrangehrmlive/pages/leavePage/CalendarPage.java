@@ -2,7 +2,6 @@ package webOrangehrmlive.pages.leavePage;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import webOrangehrmlive.utils.CalendarUtils;
@@ -35,29 +34,26 @@ public class CalendarPage extends AbstractPage {
         super(driver);
     }
 
-    public String choiceDate(SearchedDate date) {
+    public void choiceDate(SearchedDate date) {
         CalendarUtils calendarUtils = new CalendarUtils();
         calendarUtils.choiceDate(date.getMonth(), date.getYear());
-        List<ExtendedWebElement> days = numbers.stream().filter(f -> f.getText().equals(String.valueOf(date.getNumber()))).collect(Collectors.toList());
-                days.get(0).click();
-            searchedDate = days.get(0).getText() + " " + chosenMonthBtn.getText();
-
-        return searchedDate;
+//        numbers.stream().forEach(e -> System.out.println(e.getText()));
+        numbers.stream().filter(f -> f.getText().equals(String.valueOf(date.getNumber()))).limit(1).forEach(e -> e.click());
     }
 
-    public String getMonth(){
+    public String getMonth() {
         return chosenMonthBtn.getText();
     }
 
-    public String getYear(){
+    public String getYear() {
         return chosenYearBtn.getText();
     }
 
-    public void clickPreviousButton(){
+    public void clickPreviousButton() {
         previousMonth.click();
     }
 
-    public void clickNextButton(){
+    public void clickNextButton() {
         nextMonth.click();
     }
 

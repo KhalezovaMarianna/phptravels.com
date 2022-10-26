@@ -68,8 +68,6 @@ public class PimPageTests extends BaseTest {
         CalendarPage calendarPage = applyPage.clickFirstCalendar();
         SearchedDate date = new SearchedDate(12, "September", 2020);
         calendarPage.choiceDate(date);
-        applyPage.clickSecondCalendar();
-        calendarPage.choiceDate(date);
         applyPage.clickSaveButton();
         Assert.assertTrue(applyPage.isOpened(), "Page isn't opened");
     }
@@ -105,5 +103,17 @@ public class PimPageTests extends BaseTest {
         PopUpDeletePage popUpDeletePage =new PopUpDeletePage(getDriver());
         popUpDeletePage.clickDeleteButton();
         Assert.assertNotEquals(pimPage.getSearchCount(), "1", "Delete isn't work");
+    }
+
+    @Test
+    @MethodOwner(owner = "Marianna")
+    public void testAddEmployeeNegative(){
+        authorisationService.login();
+        PimPage pimPage = new PimPage(getDriver());
+        AddEmployeePage addEmployeePage = pimPage.clickAddButton();
+        addEmployeePage.clickSaveButton();
+        PersonalDetailsPage personalDetailsPage = new PersonalDetailsPage(getDriver());
+        Assert.assertFalse(personalDetailsPage.isOpened(), "Personal details page isn't opened");
+        Assert.assertTrue(addEmployeePage.isErrorMessagePresent(),"Error message isn't present");
     }
 }

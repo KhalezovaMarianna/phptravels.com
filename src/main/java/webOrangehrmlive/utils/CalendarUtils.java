@@ -30,12 +30,13 @@ public class CalendarUtils implements IMobileUtils {
         String currentMonth = calendarPage.getMonth();
         String searchedDate = month + " " + year;
 
+
         if (currentYear > year) {
-            while (!(searchedDate.equals(currentYear))) {
+            while (!(searchedDate.equals(calendarPage.getMonth()+" "+calendarPage.getYear()))) {
                 calendarPage.clickPreviousButton();
             }
         } else if (currentYear < year) {
-            while (!(searchedDate.equals(currentYear)))
+            while (!(searchedDate.equals(calendarPage.getMonth()+" "+calendarPage.getYear())))
                 calendarPage.clickNextButton();
         } else {
             if (months.get(currentMonth) > months.get(month)) {

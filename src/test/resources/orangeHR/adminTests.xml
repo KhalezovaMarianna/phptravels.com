@@ -10,7 +10,6 @@
     <test name="Admin tests">
         <classes>
             <class name="testsOrangehrmlive.pagesTests.AdminTests"/>
-
         </classes>
     </test>
 
