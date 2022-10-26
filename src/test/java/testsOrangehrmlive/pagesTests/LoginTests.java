@@ -1,19 +1,15 @@
 package testsOrangehrmlive.pagesTests;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import testsOrangehrmlive.base.BaseTest;
-import webOrangehrmlive.components.HamburgerMenu;
-import webOrangehrmlive.components.HeaderMenu;
 import webOrangehrmlive.components.PopUpForgetPassword;
 import webOrangehrmlive.pages.LoginPage;
 import webOrangehrmlive.pages.PimPage;
 import webOrangehrmlive.pages.loginPages.ForgetPasswordPage;
-import webOrangehrmlive.utils.enums.HamburgerButtonsEnum;
-import webOrangehrmlive.utils.enums.HeaderMenuButtonsEnum;
+import webOrangehrmlive.utils.enums.ButtonsEnum;
 
 
 public class LoginTests extends BaseTest {
@@ -34,7 +30,7 @@ public class LoginTests extends BaseTest {
     @MethodOwner(owner = "Maarianna")
     public void testLogout() {
         authorisationService.login();
-        navigationService.goToHeaderMenuButtonsPage(HeaderMenuButtonsEnum.LOGOUT.getButton());
+        navigationService.goToHeaderMenuButtonsPage(ButtonsEnum.LOGOUT.getButton());
         LoginPage loginPage=new LoginPage(getDriver());
         Assert.assertTrue(loginPage.isOpened(), "Login page isn't opened");
     }

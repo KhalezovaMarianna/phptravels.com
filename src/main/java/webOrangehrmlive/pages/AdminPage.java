@@ -8,9 +8,7 @@ import webOrangehrmlive.components.DeleteButton;
 import webOrangehrmlive.components.EditButton;
 import webOrangehrmlive.components.HeaderMenu;
 import webOrangehrmlive.pages.adminPages.AddUserPage;
-import webOrangehrmlive.pages.adminPages.ChangeProfilePage;
 import webOrangehrmlive.pages.adminPages.CorporateBrandingPage;
-import webOrangehrmlive.pages.leavePage.ApplyPage;
 
 public class AdminPage extends AbstractPage {
 
@@ -18,6 +16,9 @@ public class AdminPage extends AbstractPage {
     private HeaderMenu headerMenu;
     @FindBy(xpath = "//i[@class=\"oxd-icon bi-caret-down-fill\"]")
     private ExtendedWebElement systemsUsersFilter;
+
+    @FindBy(xpath = "//h5[text()=\"Employee Information\"]")
+    private ExtendedWebElement title;
 
     @FindBy(xpath = "//button[@type=\"submit\"]")
     private ExtendedWebElement searchBtn;
@@ -49,16 +50,22 @@ public class AdminPage extends AbstractPage {
     @FindBy(xpath = "//a[text()=\"Corporate Branding\"]")
     private ExtendedWebElement corporateBrandingBtn;
 
+    @FindBy(xpath = "//div[@class=\"oxd-table-body\"]/child::div[1]/div/div[2]")
+    private ExtendedWebElement username;
+
+    @FindBy(xpath = "//span[text()=\"No Records Found\"]")
+    private ExtendedWebElement elementsNotFound;
+
 
     public AdminPage(WebDriver driver) {
         super(driver);
     }
 
     public boolean isOpened() {
-        return systemsUsersFilter.isElementPresent();
+        return title.isElementPresent();
     }
 
-    public CorporateBrandingPage clickCorporateBranding(){
+    public CorporateBrandingPage clickCorporateBranding() {
         moreBtn.clickIfPresent();
         corporateBrandingBtn.click();
         return new CorporateBrandingPage(getDriver());
@@ -81,19 +88,28 @@ public class AdminPage extends AbstractPage {
         return searchElementName.getText();
     }
 
-    public DeleteButton getDeleteButton(){
+    public DeleteButton getDeleteButton() {
         return deleteBtn;
     }
 
-    public EditButton clickEditButton(){
+    public EditButton getEditButton() {
         return editButton;
     }
 
-    public void clickResetButton(){
+    public void clickResetButton() {
         resetBtn.click();
     }
-    public AddUserPage clickAddButton(){
+
+    public AddUserPage clickAddButton() {
         addBtn.click();
         return new AddUserPage(getDriver());
+    }
+
+    public String getUsername() {
+        return username.getText();
+    }
+
+    public boolean checkFoundIsNotSuccess(){
+        return elementsNotFound.isElementPresent();
     }
 }

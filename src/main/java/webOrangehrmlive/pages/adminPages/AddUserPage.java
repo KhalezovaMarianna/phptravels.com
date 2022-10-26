@@ -4,6 +4,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import webOrangehrmlive.components.EditButton;
 import webOrangehrmlive.pages.AdminPage;
 
 public class AddUserPage extends AbstractPage {
@@ -37,6 +38,9 @@ public class AddUserPage extends AbstractPage {
 
     @FindBy(xpath = "(//input[@type=\"password\"])[%s]")
     private ExtendedWebElement passwordForm;
+
+    @FindBy(xpath = "//i[@class=\"oxd-icon bi-pencil-fill\"]")
+    private EditButton editBtn;
 
     public AddUserPage(WebDriver driver) {
         super(driver);
@@ -80,4 +84,12 @@ public class AddUserPage extends AbstractPage {
     public void fillUsernameForm(String username){
         usernameForm.type(username);
     }
+
+    public EditButton getEditBtn(){
+        return editBtn;
+    }
+
+
+
+
 }

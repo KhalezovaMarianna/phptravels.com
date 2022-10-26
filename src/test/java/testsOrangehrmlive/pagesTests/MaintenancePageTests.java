@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import testsOrangehrmlive.base.BaseTest;
 import webOrangehrmlive.pages.MaintenancePage;
-import webOrangehrmlive.utils.enums.HamburgerButtonsEnum;
+import webOrangehrmlive.utils.enums.ButtonsEnum;
 
 public class MaintenancePageTests extends BaseTest {
 
@@ -13,7 +13,7 @@ public class MaintenancePageTests extends BaseTest {
     @MethodOwner(owner = "Marianna")
     public void testCheckMaintenancePageIsWork(){
         authorisationService.login();
-        navigationService.goToHamburgerButtonsPage(HamburgerButtonsEnum.MAINTENANCE);
+        navigationService.goToHamburgerButtonsPage(ButtonsEnum.MAINTENANCE);
         MaintenancePage maintenancePage =new MaintenancePage(getDriver());
         maintenancePage.fillPasswordForm("admin123");
         maintenancePage.clickConfirmButton();

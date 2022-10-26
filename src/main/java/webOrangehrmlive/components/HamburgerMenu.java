@@ -5,7 +5,7 @@ import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import webOrangehrmlive.utils.enums.HamburgerButtonsEnum;
+import webOrangehrmlive.utils.enums.ButtonsEnum;
 
 public class HamburgerMenu extends AbstractUIObject {
 
@@ -24,6 +24,6 @@ public class HamburgerMenu extends AbstractUIObject {
     }
 
     public boolean isAdminButtonPresent(){
-        return hamburgerMenuBtn.format(HamburgerButtonsEnum.ADMIN.getButton()).isElementPresent();
+        return hamburgerMenuBtn.format(ButtonsEnum.ADMIN.getButton()).isElementPresent();
     }
 }
