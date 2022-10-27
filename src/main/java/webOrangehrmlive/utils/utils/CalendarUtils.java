@@ -1,4 +1,4 @@
-package webOrangehrmlive.utils;
+package webOrangehrmlive.utils.utils;
 
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import webOrangehrmlive.pages.leavePage.CalendarPage;

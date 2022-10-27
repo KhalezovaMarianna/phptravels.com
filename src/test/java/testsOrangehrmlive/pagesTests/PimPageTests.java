@@ -13,7 +13,7 @@ import webOrangehrmlive.pages.adminPages.PopUpDeletePage;
 import webOrangehrmlive.pages.leavePage.ApplyPage;
 import webOrangehrmlive.pages.leavePage.CalendarPage;
 import webOrangehrmlive.pages.pimPages.*;
-import webOrangehrmlive.utils.SearchedDate;
+import webOrangehrmlive.utils.utils.SearchedDate;
 import webOrangehrmlive.utils.enums.ButtonsEnum;
 
 public class PimPageTests extends BaseTest {

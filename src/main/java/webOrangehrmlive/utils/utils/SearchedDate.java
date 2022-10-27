@@ -1,4 +1,4 @@
-package webOrangehrmlive.utils;
+package webOrangehrmlive.utils.utils;
 
 public class SearchedDate {
     private int number;

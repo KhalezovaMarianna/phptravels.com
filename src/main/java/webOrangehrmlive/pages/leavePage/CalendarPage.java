@@ -4,11 +4,10 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import webOrangehrmlive.utils.CalendarUtils;
-import webOrangehrmlive.utils.SearchedDate;
+import webOrangehrmlive.utils.utils.CalendarUtils;
+import webOrangehrmlive.utils.utils.SearchedDate;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CalendarPage extends AbstractPage {
     private String searchedDate;
